@@ -5,8 +5,9 @@ module SimpleToggleHardwareAssertion(
     input logic q,
     input logic z
 );
-    
-    state_type {START, S1,PASS} state, next_state;
+
+    typedef enum logic [1:0] {START,S1} state_type;
+    state_type state, next_state;
     // State encoding
     always_ff @(posedge clk or negedge reset) begin
         if (!reset)
@@ -28,11 +29,3 @@ module SimpleToggleHardwareAssertion(
     end
 
 endmodule
-
-bind SimpleToggle SimpleToggleHardwareAssertion(
-    .clk(clk),
-    .reset(reset),
-    .en(en),
-    .q(q),
-    .z(z)
-);

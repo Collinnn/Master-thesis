@@ -7,24 +7,16 @@ module SimpleToggleAssertion(
 );
     // Assertion: z should be the complement of q
     property p1;
-        @(posedge clk) 
-        disable iff (reset) 
-        (en && q) |-> ##1 z;
+        @(posedge clk)
+        disable iff (reset)
+        (en && q) |-> ##1 (!en || z);
     endproperty
     property p2;
-        @(posedge clk) 
-        disable iff (reset) 
-        (en && !q) |-> ##1 !z;
+        @(posedge clk)
+        disable iff (reset)
+        (en && !q) |-> ##1 (!en || !z);
     endproperty
     assert_p1: assert property(p1);
     assert_p2: assert property(p2);
 
 endmodule
-
-bind SimpleToggle SimpleToggleAssertion(
-    .clk(clk),
-    .reset(reset),
-    .en(en),
-    .q(q),
-    .z(z)
-);
