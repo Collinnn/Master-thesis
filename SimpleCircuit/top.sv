@@ -18,7 +18,21 @@ module Top_tb;
     .z(z)
   );
 
-  SimpleToggleHardwareAssertion u_hw_assert(
+  SimpleToggleHardwareAssertionp1 u_hw_assert(
+    .clk(clk),
+    .reset(reset),
+    .en(en),
+    .q(q),
+    .z(z)
+  );
+  SimpleToggleHardwareAssertionp2 u_hw_assert2(
+    .clk(clk),
+    .reset(reset),
+    .en(en),
+    .q(q),
+    .z(z)
+  );
+  SimpleToggleHardwareAssertionp2Shift u_hw_assert2shift(
     .clk(clk),
     .reset(reset),
     .en(en),
